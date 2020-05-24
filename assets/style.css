@@ -1,0 +1,6 @@
+.all_tournaments a, .main{
+    display: flex;
+}
+.m-l-250{
+    margin-left: 250px;
+}
