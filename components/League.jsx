@@ -1,20 +1,20 @@
-import Link from 'next/link'
 import React, {useState} from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import map from 'lodash/map'
 import LeagueSeasons from './LeagueSeasons'
-import {loadSeasons} from '../actions'
 import FixtureLineup from './FixtureLineup'
+import SeasonFixture from './SeasonFixture'
+import {loadSeasons, changeLeagueInfo} from '../actions'
+
 const League = ({error, leaguesData, title, dispatch}) => {
 
-  const [leagueStatus, setLeagueStatus] = useState(false)
-  const [leagueId, setLeagueId] = useState(null)
-
+  const leagueInfo = useSelector(state => state.leagueInfo)
+  const seasonInfo = useSelector(state => state.seasonInfo)
+  const fixtureInfo = useSelector(state => state.fixtureInfo)
+  
   const leagueLink = (id) => {
-    if (id != leagueId) {
+    if (id != leagueInfo.id) {
       dispatch(loadSeasons(id))
-      setLeagueStatus(true)
-      setLeagueId(id)
     }
   }
   
@@ -31,10 +31,18 @@ const League = ({error, leaguesData, title, dispatch}) => {
         
         {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
       </div>
-      {/* <FixtureLineup fixtureId = {5}/>
-      {leagueStatus && (
-         <LeagueSeasons leagueId = {leagueId} title="Seasons"/>
-      )} */}
+      
+      {leagueInfo.status && (
+         <LeagueSeasons leagueId = {leagueInfo.id} title="Seasons"/>
+      )} 
+
+      {seasonInfo.status && (
+         <SeasonFixture seasonId = {seasonInfo.id} title="Matches"/>
+      )} 
+
+      {fixtureInfo.status && (
+        <FixtureLineup fixtureId = {fixtureInfo.id}/>
+      )}
     </div>
   )
 }

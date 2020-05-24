@@ -1,4 +1,4 @@
-export const seasonTempData = () =>{
+export const seasonTempData = () => {
     return [
         {
           year: 2008,
@@ -80,7 +80,7 @@ export const seasonTempData = () =>{
 } 
 
 export const fixtureTempData = () => {
-    return 
+    return (
     [
         {
             fixture: {
@@ -149,10 +149,11 @@ export const fixtureTempData = () => {
             }
         }
     ]
+    )
 }
 
 export const lineupTempData = () => {
-    return {
+    return ({
         response:[
             {
                 startXI: [
@@ -185,5 +186,5 @@ export const lineupTempData = () => {
                 ]
             }
         ]
-    }
+    })
 }

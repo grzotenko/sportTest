@@ -6,6 +6,18 @@ export const exampleInitialState = {
   fixtureData: null,
   lineupData: null,
   error: false,
+  leagueInfo: {
+    status: false,
+    id: null
+  },
+  seasonInfo: {
+    status: false,
+    id: null
+  },
+  fixtureInfo: {
+    status: false,
+    id: null
+  },
 }
 
 function reducer(state = exampleInitialState, action) {
@@ -17,6 +29,7 @@ function reducer(state = exampleInitialState, action) {
         ...{ error: action.error },
       }
 
+
     case actionTypes.LOAD_LEAGUES_SUCCESS:
       return {
         ...state,
@@ -26,19 +39,19 @@ function reducer(state = exampleInitialState, action) {
     case actionTypes.LOAD_FIXTURES_SUCCESS:
       return {
         ...state,
-        ...{ fixtureData: action.data },
+        ...{ fixtureData: action.data, seasonInfo: {status: true, id: action.payload.yearSeason } },
       }
 
     case actionTypes.LOAD_LINEUP_SUCCESS:
       return {
         ...state,
-        ...{ lineupData: action.data },
+        ...{ lineupData: action.data, fixtureInfo: {status: true, id: action.payload } },
       }
 
     case actionTypes.LOAD_SEASONS_SUCCESS:
       return {
         ...state,
-        ...{ seasonsData: action.data },
+        ...{ seasonsData: action.data, leagueInfo: {status: true, id: action.payload } },
       }
     
     default:

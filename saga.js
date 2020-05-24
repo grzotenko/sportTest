@@ -11,7 +11,7 @@ function* loadLeaguesSaga() {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "fe8f598e638e3949c854bfc4f5ca5d8b"
+        "x-rapidapi-key": `${process.env.x_rapidapi_key}`
       }
     })
     const data = yield res.json()
@@ -28,7 +28,7 @@ function* loadSeasonsSaga(action) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "fe8f598e638e3949c854bfc4f5ca5d8b",
+        "x-rapidapi-key": `${process.env.x_rapidapi_key}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': "*"
@@ -48,7 +48,7 @@ function* loadFixturesSaga(action) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "fe8f598e638e3949c854bfc4f5ca5d8b",
+        "x-rapidapi-key": `${process.env.x_rapidapi_key}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': "*"
@@ -69,7 +69,7 @@ function* loadLineupSaga(action) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "fe8f598e638e3949c854bfc4f5ca5d8b",
+        "x-rapidapi-key": `${process.env.x_rapidapi_key}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': "*"

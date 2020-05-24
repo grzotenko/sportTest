@@ -3,7 +3,7 @@ import map from 'lodash/map'
 import {useSelector, useDispatch} from 'react-redux'
 import SeasonFixture from './SeasonFixture'
 import { loadFixtures } from '../actions'
-import seasonTempData from '../temp/tempData'
+import {seasonTempData} from '../temp/tempData'
 
 const LeagueSeasons = ({leagueId, title}) => {
     const dispatch = useDispatch()
@@ -11,20 +11,14 @@ const LeagueSeasons = ({leagueId, title}) => {
     if (seasonsData === null){
       setSeasonsData(seasonTempData)
     }
-    
-    const [seasonStatus, setSeasonStatus] = useState(false)
-    const [seasonId, setSeasonId] = useState(null)
-    
+    const seasonInfo = useSelector(state => state.seasonInfo)
     const seasonLink = (id) => {  
-      if (id != seasonId) {
+      if (id != seasonInfo.id) {
         dispatch(loadFixtures(leagueId, id))
-        setSeasonStatus(true)
-        setSeasonId(id)
       }
     }
 
     return (
-      <div className="main">
         <div>
           <h1>{title}</h1>
           <div className="all_tournaments">
@@ -34,11 +28,6 @@ const LeagueSeasons = ({leagueId, title}) => {
             }
           </div>
         </div>
-          
-        {seasonStatus && (
-          <SeasonFixture seasonId = {seasonId} title="Matches"/>
-        )}
-      </div>
     )
   }
 export default LeagueSeasons
