@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { loadLeagues } from '../actions'
-import League from '../components/League'
+import League from '../components/react/containers/League'
 
 class Index extends React.Component {
   static async getInitialProps(props) {
